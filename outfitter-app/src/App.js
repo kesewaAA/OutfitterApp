@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import sunny from './assets/sunny.svg';
+import edit from './assets/edit.svg';
+import home from './assets/home.svg';
+import closet from './assets/closet.svg';
+import settings from './assets/settings.svg';
 
 function App() {
   const [temperature, setTemperature] = useState(null);
@@ -20,7 +25,7 @@ function App() {
         <h1 className="app-name">Outfitter</h1>
         <div className="weather">
           <div className="weather-info">{temperature ? `${temperature}° F` : 'Loading...'}</div>
-          <span className="weather-icon">☀️</span>
+          <img src={sunny} className="weather-icon" alt="weather icon" />
           <div className="weather-info">Sunny</div>
         </div>
       </header>
@@ -32,7 +37,7 @@ function App() {
         <ul className="event-list">
           <li className="event-item">
             <span>11/14 Friday dinner at 6pm</span>
-            <span className="edit-icon">✏️</span>
+            <img src={edit} className="edit-icon" alt="edit icon" />
           </li>
         </ul>
         <button className="add-event-button">Add event</button>
@@ -49,16 +54,16 @@ function App() {
 
       <nav className="nav-menu">
         <div className="nav-item">
-          <span className="nav-icon">🏠</span>
-          <span>home</span>
+          <img src={home} className="nav-icon" alt="home icon" />
+          <span>Home</span>
         </div>
         <div className="nav-item">
-          <span className="nav-icon">👕</span>
-          <span>closet</span>
+          <img src={closet} className="nav-icon" alt="closet icon" />
+          <span>Closet</span>
         </div>
         <div className="nav-item">
-          <span className="nav-icon">⚙️</span>
-          <span>settings</span>
+          <img src={settings} className="nav-icon" alt="settings icon" />
+          <span>Settings</span>
         </div>
       </nav>
     </div>
