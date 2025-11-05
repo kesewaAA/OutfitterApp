@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Settings from './pages/Settings'
 
 function App() {
   const [temperature, setTemperature] = useState(null);
