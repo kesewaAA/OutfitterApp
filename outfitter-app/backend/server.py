@@ -1,13 +1,13 @@
 from flask import Flask, jsonify
-from weather import get_current_temp_f
+from weather import get_current_weather
 
 app = Flask(__name__)
 
 @app.route('/api/weather')
 def weather():
-    temp = get_current_temp_f()
-    if temp is not None:
-        return jsonify({'temperature': temp})
+    weather_data = get_current_weather()
+    if weather_data is not None:
+        return jsonify(weather_data)
     else:
         return jsonify({'error': 'Could not retrieve weather data'}), 500
 
