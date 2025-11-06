@@ -41,3 +41,10 @@ This is a simple app that suggests clothing outfits based on user input.
    ```
 
 ### Both the backend and the frontend need to be running for the app to work properly!
+
+**Notes:**
+- Frontend is located in the `outfitter-app/src`folder
+    -  Assets folder: Contains all image and vector files for the app. Clothing items are stored in `assets/clothing`. `clothing.json` contains json mapping of clothing images with clothing name and tags
+    - Components folder: Contains reusable components like the navigation bar
+    - Pages folder: Contains all pages of the app with their respective CSS files
+- Backend is located in the `outfitter-app/backend` folder. **Make sure to install all requirements in requirements.txt before running the backend**
