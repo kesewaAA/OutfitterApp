@@ -43,3 +43,7 @@
   font-size: 0.9em;
   color: #1E3C63;
 }
+
+.closet-worn-item {
+  border: 3px solid #FF8E8E;
+}

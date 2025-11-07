@@ -69,9 +69,27 @@
   border: none;
   padding: 15px 30px;
   border-radius: 25px;
-  font-size: 1.1em;
+  font-size: 1.3em;
   font-weight: bold;
   cursor: pointer;
   width: 200px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggestion-wear-button.worn {
+  background-color: #71B87E;
+  width: 300px;
+}
+
+.suggestion-wear-button:disabled {
+  cursor: not-allowed;
+}
+
+.checkbox-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
 }

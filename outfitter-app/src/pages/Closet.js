@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import './Closet.css';
 import clothingData from '../assets/clothing/clothing.json';
@@ -13,13 +13,22 @@ const clothingImages = {
 };
 
 function Closet() {
+  const [wornItems, setWornItems] = useState([]);
+
+  useEffect(() => {
+    const storedWornItems = JSON.parse(localStorage.getItem('wornItems'));
+    if (storedWornItems) {
+      setWornItems(storedWornItems);
+    }
+  }, []);
+
   return (
     <div className="App">
       <h1 className="closet-header">My Outfitter Closet</h1>
       <div className="divider"></div>
       <div className="closet-grid">
         {clothingData.map(item => (
-          <div key={item.id} className="closet-item">
+          <div key={item.id} className={`closet-item ${wornItems.includes(item.label) ? 'closet-worn-item' : ''}`}>
             <img src={clothingImages[item.src]} alt={item.alt} />
             <div className="closet-item-label">{item.label}</div>
           </div>
