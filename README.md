@@ -16,6 +16,7 @@ This is a simple app that suggests clothing outfits based on user input.
    ```bash
    npm start
    ```
+4. The frontend will open automatically on `localhost:3000`. The Outfitter app is built to be displayed on a mobile viewport. To view the app on a mobile viewport while on a computer, go to `Develop -> Enter Responsive Design Mode` if using Safari or `DevTools -> Toggle device toolbar` if using Google Chrome.
 
 ## Running the Backend
 
