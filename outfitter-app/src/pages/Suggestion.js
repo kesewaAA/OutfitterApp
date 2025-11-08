@@ -9,13 +9,13 @@ import checkbox from '../assets/checkbox.svg';
 
 const initialSuggestedItems = [
   {
-    id: 1,
+    id: 2, // Matching the id from clothing.json
     label: 'Hoodie',
     src: hoodie,
     alt: 'hoodie'
   },
   {
-    id: 2,
+    id: 5, // Matching the id from clothing.json
     label: 'Sweatpants',
     src: sweatpants,
     alt: 'sweatpants'
@@ -34,25 +34,29 @@ function Suggestion() {
       .then(data => {
         setTemperature(data[0]);
       });
-
-    const wornState = JSON.parse(localStorage.getItem('wornState'));
-    if (wornState) {
-      const today = new Date().toLocaleDateString();
-      const wornDate = new Date(wornState.timestamp).toLocaleDateString();
-      if (today === wornDate) {
-        setIsWorn(wornState.isWorn);
-      }
-    }
   }, []);
 
   const handleWearClick = () => {
-    setIsWorn(true);
-    const wornItems = suggestedItems.map(item => item.label);
-    localStorage.setItem('wornItems', JSON.stringify(wornItems));
-    localStorage.setItem('wornState', JSON.stringify({ isWorn: true, timestamp: Date.now() }));
-    setTimeout(() => {
-      navigate('/closet');
-    }, 300);
+    const item_ids = suggestedItems.map(item => item.id);
+
+    fetch('/api/wear-items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ item_ids }),
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data.message);
+      setIsWorn(true);
+      setTimeout(() => {
+        navigate('/closet');
+      }, 300);
+    })
+    .catch(error => {
+      console.error('Error updating worn items:', error);
+    });
   };
 
   return (

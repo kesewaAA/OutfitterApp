@@ -7,7 +7,6 @@ import rainy from '../assets/rainy.svg';
 import snowy from '../assets/snowy.svg';
 import edit from '../assets/edit.svg';
 import Navigation from '../components/Navigation';
-import clothingData from '../assets/clothing/clothing.json';
 
 const clothingImages = {
   "./dress.jpg": require('../assets/clothing/dress.jpg'),
@@ -21,6 +20,7 @@ const clothingImages = {
 function Home() {
   const [temperature, setTemperature] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [clothingData, setClothingData] = useState([]);
 
   useEffect(() => {
     fetch('/api/weather')
@@ -29,6 +29,10 @@ function Home() {
         setTemperature(data[0]);
         setWeather(data[1].split(' ')[0]);
       });
+
+    fetch('/api/clothing')
+      .then(res => res.json())
+      .then(data => setClothingData(data));
   }, []);
 
   const getWeatherIcon = (weather) => {

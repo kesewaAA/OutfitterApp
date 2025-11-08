@@ -16,10 +16,10 @@ function Navigation() {
         <img src={closet} className="nav-icon" alt="closet icon" />
         <span>Closet</span>
       </Link>
-      <div className="nav-item">
+      <Link to="/settings" className="nav-item">
         <img src={settings} className="nav-icon" alt="settings icon" />
         <span>Settings</span>
-      </div>
+      </Link>
     </nav>
   );
 }

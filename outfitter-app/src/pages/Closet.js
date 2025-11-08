@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import './Closet.css';
-import clothingData from '../assets/clothing/clothing.json';
 
 const clothingImages = {
   "./dress.jpg": require('../assets/clothing/dress.jpg'),
@@ -13,13 +12,12 @@ const clothingImages = {
 };
 
 function Closet() {
-  const [wornItems, setWornItems] = useState([]);
+  const [clothingData, setClothingData] = useState([]);
 
   useEffect(() => {
-    const storedWornItems = JSON.parse(localStorage.getItem('wornItems'));
-    if (storedWornItems) {
-      setWornItems(storedWornItems);
-    }
+    fetch('/api/clothing')
+      .then(res => res.json())
+      .then(data => setClothingData(data));
   }, []);
 
   return (
@@ -28,7 +26,7 @@ function Closet() {
       <div className="divider"></div>
       <div className="closet-grid">
         {clothingData.map(item => (
-          <div key={item.id} className={`closet-item ${wornItems.includes(item.label) ? 'closet-worn-item' : ''}`}>
+          <div key={item.id} className={`closet-item ${item.tags.includes('recently worn') ? 'closet-worn-item' : ''}`}>
             <img src={clothingImages[item.src]} alt={item.alt} />
             <div className="closet-item-label">{item.label}</div>
           </div>
