@@ -89,7 +89,7 @@ body {
 
 .event-list {
   list-style: none;
-  padding: 0px 15px;
+  padding: 0px;
   margin: 0;
   padding-bottom: 8vh;
 }
@@ -101,11 +101,6 @@ body {
   font-size: 1.2em;
   font-weight: medium;
   padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-.event-item:last-child {
-  border-bottom: none;
 }
 
 .edit-icon {
@@ -125,10 +120,11 @@ body {
   position: absolute;
   bottom: 15px;
   right: 15px;
+  text-decoration: none;
 }
 
 .recently-worn {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .recently-worn h2 {

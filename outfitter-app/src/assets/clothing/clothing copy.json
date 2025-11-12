@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1,
+    "src": "./dress.jpg",
+    "alt": "dress",
+    "label": "Dress",
+    "tags": [
+      "one-piece",
+      "formal",
+      "summer"
+    ]
+  },
+  {
+    "id": 2,
+    "src": "./hoodie.jpg",
+    "alt": "hoodie",
+    "label": "Hoodie",
+    "tags": [
+      "long sleeve",
+      "casual",
+      "outerwear"
+    ]
+  },
+  {
+    "id": 3,
+    "src": "./jacket.webp",
+    "alt": "jacket",
+    "label": "Jacket",
+    "tags": [
+      "long sleeve",
+      "casual",
+      "outerwear",
+      "recently worn"
+    ]
+  },
+  {
+    "id": 4,
+    "src": "./jeans.jpg",
+    "alt": "jeans",
+    "label": "Jeans",
+    "tags": [
+      "pants",
+      "casual",
+      "recently worn"
+    ]
+  },
+  {
+    "id": 5,
+    "src": "./sweatpants.webp",
+    "alt": "sweatpants",
+    "label": "Sweatpants",
+    "tags": [
+      "pants",
+      "casual",
+      "lounge"
+    ]
+  },
+  {
+    "id": 6,
+    "src": "./tshirt.webp",
+    "alt": "tshirt",
+    "label": "T-Shirt",
+    "tags": [
+      "short sleeve",
+      "casual",
+      "recently worn"
+    ]
+  }
+]

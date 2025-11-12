@@ -21,6 +21,7 @@ function Home() {
   const [temperature, setTemperature] = useState(null);
   const [weather, setWeather] = useState(null);
   const [clothingData, setClothingData] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     fetch('/api/weather')
@@ -33,6 +34,17 @@ function Home() {
     fetch('/api/clothing')
       .then(res => res.json())
       .then(data => setClothingData(data));
+
+    fetch('/api/events')
+      .then(res => res.json())
+      .then(data => {
+        const now = new Date();
+        const oneMonthFromNow = new Date(new Date().setMonth(now.getMonth() + 1));
+        const upcomingEvents = data
+          .filter(event => event.id && new Date(event.date) < oneMonthFromNow)
+          .slice(0, 3);
+        setEvents(upcomingEvents);
+      });
   }, []);
 
   const getWeatherIcon = (weather) => {
@@ -63,12 +75,27 @@ function Home() {
       <div className="upcoming-events">
         <h2>Upcoming events</h2>
         <ul className="event-list">
-          <li className="event-item">
-            <span>11/14 Friday dinner at 6pm</span>
-            <img src={edit} className="edit-icon" alt="edit icon" />
-          </li>
+          {events.map((event, index) => (
+            <li key={index} className="event-item">
+              <span>
+                {(() => {
+                  const eventDateObj = new Date(event.date);
+                  const currentYear = new Date().getFullYear();
+                  const eventYear = eventDateObj.getFullYear();
+                  const options = { month: 'numeric', day: 'numeric' };
+                  if (eventYear !== currentYear) {
+                    options.year = 'numeric';
+                  }
+                  return `${eventDateObj.toLocaleDateString(undefined, options)} ${event.name}`;
+                })()}
+              </span>
+              <Link to={`/add-event/${event.id}`}>
+                <img src={edit} className="edit-icon" alt="edit icon" />
+              </Link>
+            </li>
+          ))}
         </ul>
-        <button className="add-event-button">Add event</button>
+        <Link to="/add-event" className="add-event-button">Add event</Link>
       </div>
 
       <div className="recently-worn">
