@@ -13,12 +13,56 @@
   margin-bottom: 20px;
 }
 
+.tags-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.tags-container::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tags-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.tags-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+.tags-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.tag {
+  color: white;
+  padding: 8px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.active-tag {
+  border: 2px solid white;
+}
+
+.closet-content-scroll {
+  max-height: calc(100vh - 200px); /* Adjust based on header/footer height */
+  overflow-y: auto;
+  padding-bottom: 170px; /* Space for the fixed button and nav bar */
+}
+
 .closet-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  margin-top: 5vh;
-  margin-bottom: 80px;
+  margin-top: 2vh;
+  margin-bottom: 0; /* Removed margin-bottom */
 }
 
 .closet-item {
@@ -49,12 +93,20 @@
 }
 
 .closet-buttons {
+  position: fixed;
+  bottom: 100px; /* Adjusted to be above the nav bar */
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8vh;
+  padding-top: 10px;
+  padding-bottom: 10px; /* Adjusted padding */
   gap: 30px;
-  margin-bottom: 12vh;
+  margin-top: 0; /* Removed margin-top */
+  margin-bottom: 0; /* Removed margin-bottom */
 }
 
 .closet-camera-button {
