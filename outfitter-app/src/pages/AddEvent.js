@@ -3,15 +3,6 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './AddEvent.css';
 import Navigation from '../components/Navigation';
 
-const clothingImages = {
-    "./dress.jpg": require('../assets/clothing/dress.jpg'),
-    "./hoodie.jpg": require('../assets/clothing/hoodie.jpg'),
-    "./jacket.webp": require('../assets/clothing/jacket.webp'),
-    "./jeans.jpg": require('../assets/clothing/jeans.jpg'),
-    "./sweatpants.webp": require('../assets/clothing/sweatpants.webp'),
-    "./tshirt.webp": require('../assets/clothing/tshirt.webp'),
-};
-
 function AddEvent() {
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
@@ -146,7 +137,7 @@ function AddEvent() {
               <div className="selected-clothing-grid">
                 {selectedClothing.map(item => (
                   <div key={item.id} className="selected-clothing-item">
-                    <img src={clothingImages[item.src]} alt={item.alt} />
+                    <img src={require(`../assets/clothing/${item.src.substring(2)}`)} alt={item.alt} />
                     <p>{item.label}</p>
                   </div>
                 ))}

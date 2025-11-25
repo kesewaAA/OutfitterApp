@@ -8,15 +8,6 @@ import snowy from '../assets/snowy.svg';
 import edit from '../assets/edit.svg';
 import Navigation from '../components/Navigation';
 
-const clothingImages = {
-  "./dress.jpg": require('../assets/clothing/dress.jpg'),
-  "./hoodie.jpg": require('../assets/clothing/hoodie.jpg'),
-  "./jacket.webp": require('../assets/clothing/jacket.webp'),
-  "./jeans.jpg": require('../assets/clothing/jeans.jpg'),
-  "./sweatpants.webp": require('../assets/clothing/sweatpants.webp'),
-  "./tshirt.webp": require('../assets/clothing/tshirt.webp'),
-};
-
 function Home() {
   const [temperature, setTemperature] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -107,7 +98,7 @@ function Home() {
           <div className="worn-items-grid">
             {recentlyWornItems.map(item => (
               <div key={item.id} className="worn-item">
-                <img src={clothingImages[item.src]} alt={item.alt} />
+                <img src={require(`../assets/clothing/${item.src.substring(2)}`)} alt={item.alt} />
                 <div className="closet-item-label">{item.label}</div>
               </div>
             ))}

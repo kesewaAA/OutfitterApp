@@ -5,15 +5,6 @@ import './Closet.css';
 import camera from '../assets/camera.svg';
 import star from '../assets/star.svg';
 
-const clothingImages = {
-  "./dress.jpg": require('../assets/clothing/dress.jpg'),
-  "./hoodie.jpg": require('../assets/clothing/hoodie.jpg'),
-  "./jacket.webp": require('../assets/clothing/jacket.webp'),
-  "./jeans.jpg": require('../assets/clothing/jeans.jpg'),
-  "./sweatpants.webp": require('../assets/clothing/sweatpants.webp'),
-  "./tshirt.webp": require('../assets/clothing/tshirt.webp'),
-};
-
 const tagColors = [
   '#dba865',
   '#c9bf4d',
@@ -165,7 +156,7 @@ function Closet() {
               onClick={(e) => handleItemClick(e, item)}
             >
               {item.tags.includes('saved') && <img src={star} alt="saved" className="saved-star" />}
-              <img src={clothingImages[item.src]} alt={item.alt} />
+              <img src={require(`../assets/clothing/${item.src.substring(2)}`)} alt={item.alt} />
               <div className="closet-item-label">{item.label}</div>
             </div>
           ))}
@@ -186,7 +177,7 @@ function Closet() {
       {isPopupVisible && selectedItemPopup && (
         <div className="popup" onClick={closePopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <img src={clothingImages[selectedItemPopup.src]} alt={selectedItemPopup.alt} className="popup-img" />
+            <img src={require(`../assets/clothing/${selectedItemPopup.src.substring(2)}`)} alt={selectedItemPopup.alt} className="popup-img" />
             <button className="save-for-later-button" onClick={() => handleSaveForLater(selectedItemPopup.id)}>
               Save for Later
             </button>

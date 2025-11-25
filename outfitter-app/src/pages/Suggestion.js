@@ -87,7 +87,6 @@ function Suggestion() {
             'Wear'
           )}
         </button>
-        <button className="suggestion-swap-button">Swap Item</button>
       </div>
       <Navigation />
     </div>

@@ -65,5 +65,15 @@
       "casual",
       "recently worn"
     ]
+  },
+  {
+    "id": 7,
+    "src": "./sweater.jpg",
+    "alt": "sweater",
+    "label": "Sweater",
+    "tags": [
+      "long sleeve",
+      "casual"
+    ]
   }
 ]
