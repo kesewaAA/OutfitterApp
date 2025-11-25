@@ -140,10 +140,18 @@ function Closet() {
               onClick={() => handleTagClick(tag)}
               style={{
                 backgroundColor: activeTags.includes(tag)
-                  ? '#47A0DF'
+                  ? '' // Handled by CSS
                   : getColorForTag(tag, index),
               }}
             >
+              {activeTags.includes(tag) && (
+                <span className="tag-x-button" onClick={(e) => {
+                  e.stopPropagation(); // Prevent click from propagating to the parent tag div
+                  handleTagClick(tag);
+                }}>
+                  x
+                </span>
+              )}
               {tag}
             </div>
           ))}

@@ -79,15 +79,42 @@
 
 .tag {
   color: white;
-  padding: 8px 12px;
+  padding: 8px 12px; /* Adjusted padding to make space for the 'x' button */
   border-radius: 15px;
   cursor: pointer;
   margin-right: 10px;
   display: inline-block;
+  position: relative; /* Added for positioning the x button */
+}
+
+.tag-x-button {
+  position: absolute;
+  top: -5px; /* Adjust as needed */
+  left: -5px; /* Adjust as needed */
+  background-color: white; /* Red background for the x button */
+  color: #47A0DF;
+  border-radius: 50%;
+  border: 2px solid #47A0DF;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2; 
+  line-height: 1; 
+}
+
+.tag-x-button:hover {
+  background-color: white;
 }
 
 .active-tag {
   border: 2px solid white;
+  background-color: #47A0DF !important; 
+  padding-left: 20px; 
 }
 
 .closet-grid {
