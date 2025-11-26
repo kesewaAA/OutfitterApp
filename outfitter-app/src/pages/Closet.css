@@ -84,14 +84,14 @@
   cursor: pointer;
   margin-right: 10px;
   display: inline-block;
-  position: relative; /* Added for positioning the x button */
+  position: relative; 
 }
 
 .tag-x-button {
   position: absolute;
-  top: -5px; /* Adjust as needed */
-  left: -5px; /* Adjust as needed */
-  background-color: white; /* Red background for the x button */
+  top: -5px; 
+  left: -5px; 
+  background-color: white; 
   color: #47A0DF;
   border-radius: 50%;
   border: 2px solid #47A0DF;

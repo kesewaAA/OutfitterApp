@@ -15,7 +15,7 @@ def get_current_weather():
 
     data = r.json()["current_weather"]
     celsius = data["temperature"]
-    fahrenheit = round((celsius * 9/5) + 32, 1)
+    fahrenheit = round((celsius * 9/5) + 32, 0)
     code = data.get("weathercode", 0)
 
     # Simplified categories

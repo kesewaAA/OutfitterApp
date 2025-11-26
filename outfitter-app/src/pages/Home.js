@@ -8,20 +8,26 @@ import snowy from '../assets/snowy.svg';
 import edit from '../assets/edit.svg';
 import Navigation from '../components/Navigation';
 
-function Home() {
-  const [temperature, setTemperature] = useState(null);
-  const [weather, setWeather] = useState(null);
+function Home({ temperature, weather }) { // Accept temperature and weather as props
   const [clothingData, setClothingData] = useState([]);
   const [events, setEvents] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showEvents, setShowEvents] = useState(true);
+
+  // Remove fetchWeather function and related weather state/effect from here
+  useEffect(() => {
+    const dailySuggestionsSaved = localStorage.getItem('dailySuggestions');
+    if (dailySuggestionsSaved !== null) {
+      setShowSuggestions(JSON.parse(dailySuggestionsSaved));
+    }
+
+    const plannedEventsSaved = localStorage.getItem('plannedEvents');
+    if (plannedEventsSaved !== null) {
+      setShowEvents(JSON.parse(plannedEventsSaved));
+    }
+  }, []); // Empty dependency array for effects that run once
 
   useEffect(() => {
-    fetch('/api/weather')
-      .then(res => res.json())
-      .then(data => {
-        setTemperature(data[0]);
-        setWeather(data[1].split(' ')[0]);
-      });
-
     fetch('/api/clothing')
       .then(res => res.json())
       .then(data => setClothingData(data));
@@ -61,9 +67,9 @@ function Home() {
         </div>
       </header>
       <div className="home-scrollable-content">
-        <Link to="/suggestion" className="suggestions-button">See Today's Suggestion</Link>
+        {showSuggestions && <Link to="/suggestion" className="suggestions-button">See Today's Suggestion</Link>}
 
-        <div className="upcoming-events">
+        {showEvents && <div className="upcoming-events">
           <div className="upcoming-events-header">
             <h2>Upcoming events</h2>
           </div>
@@ -91,7 +97,7 @@ function Home() {
             </ul>
             <Link to="/add-event" className="add-event-button">Add event</Link>
           </div>
-        </div>
+        </div>}
 
         <div className="recently-worn">
           <h2>Recently worn</h2>
