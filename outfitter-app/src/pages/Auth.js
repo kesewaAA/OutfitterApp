@@ -1,49 +1,40 @@
 // src/pages/Auth.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { API_BASE, setToken } from "../utils/auth";
+import { loginUser, signupUser } from "../utils/auth"; // keep your existing functions
 
-export default function Auth() {
-  const [mode, setMode] = useState("signin"); // "signin" | "signup"
+function Auth() {
+  const [mode, setMode] = useState("signin"); // "signin" or "signup"
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState(""); // only for signup
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  async function submit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+
     try {
-      const endpoint = mode === "signup" ? "/signup" : "/login";
-      const body = mode === "signup" ? { email, password, name } : { email, password };
-
-      const res = await fetch(`${API_BASE}${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || data.message || JSON.stringify(data));
-
-      // backend returns { access: "<token>" }
-      if (data.access) {
-        setToken(data.access);
-        navigate("/settings");
+      let data;
+      if (mode === "signup") {
+        data = await signupUser(name, email, password); // your existing signupUser function
       } else {
-        // fallback for different response shapes
-        setError("No token returned from server.");
+        data = await loginUser(email, password); // your existing loginUser function
       }
+
+      // store tokens in localStorage (replace this if you want AsyncStorage for React Native)
+      localStorage.setItem("access", data.access);
+      localStorage.setItem("refresh", data.refresh);
+
+      alert(mode === "signup" ? "Signed up!" : "Signed in!");
     } catch (err) {
-      setError(err.message || "Unknown error");
+      setError(err.message || "Something went wrong");
     }
   }
 
   return (
-    <div style={{ padding: 16, maxWidth: 420, margin: "0 auto" }}>
-      <h2>{mode === "signin" ? "Sign In" : "Create Account"}</h2>
-      <form onSubmit={submit}>
+    <div className="auth-container">
+      <h1>{mode === "signin" ? "Sign In" : "Sign Up"}</h1>
+      <form onSubmit={handleSubmit}>
         {mode === "signup" && (
           <div>
             <label>Name</label>
@@ -52,15 +43,21 @@ export default function Auth() {
         )}
         <div>
           <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div>
           <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <div style={{ marginTop: 12 }}>
-          <button type="submit">{mode === "signin" ? "Sign In" : "Sign Up"}</button>
-        </div>
+        <button type="submit">{mode === "signin" ? "Sign In" : "Create Account"}</button>
       </form>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -72,3 +69,5 @@ export default function Auth() {
     </div>
   );
 }
+
+export default Auth;
