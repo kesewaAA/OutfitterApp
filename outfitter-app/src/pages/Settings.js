@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import './Settings.css';
 
 function Settings() {
+  const navigate = useNavigate();
   const [dailySuggestions, setDailySuggestions] = useState(true);
   const [weatherChanges, setWeatherChanges] = useState(true);
   const [plannedEvents, setPlannedEvents] = useState(true);
