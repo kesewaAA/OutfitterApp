@@ -6,7 +6,8 @@ import Closet from './pages/Closet';
 import Settings from './pages/Settings';
 import AddEvent from './pages/AddEvent';
 import LoadingScreen from './components/LoadingScreen'; // Import the LoadingScreen component
-
+import Auth from "./pages/Auth"; #added 
+  
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFading, setIsFading] = useState(false);
