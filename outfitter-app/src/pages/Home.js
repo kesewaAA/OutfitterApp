@@ -35,10 +35,7 @@ function Home({ temperature, weather }) { // Accept temperature and weather as p
     fetch('/api/events')
       .then(res => res.json())
       .then(data => {
-        const now = new Date();
-        const oneMonthFromNow = new Date(new Date().setMonth(now.getMonth() + 1));
         const upcomingEvents = data
-          .filter(event => event.id && new Date(event.date) < oneMonthFromNow)
           .slice(0, 3);
         setEvents(upcomingEvents);
       });
