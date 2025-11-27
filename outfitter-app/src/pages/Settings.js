@@ -63,13 +63,11 @@ function Settings() {
           <div className="settings-box clickable">
             <span>Log Out</span>
           </div>
-        </div>
-      </div>
-
-     <div className="settings-box clickable" onClick={() => navigate("/auth")}>
+          <div className="settings-box clickable" onClick={() => navigate("/auth")}>
             <span>Log In / Sign Up</span>
           </div>
-  </div> #added 
+        </div>
+      </div>
 
       <div className="settings-section">
         <h2 className="settings-subheader">Weather</h2>
