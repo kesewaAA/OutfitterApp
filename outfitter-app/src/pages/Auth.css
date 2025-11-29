@@ -1,0 +1,131 @@
+.auth-container {
+  position: absolute; /* Use absolute positioning to fill the viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, white, #C4F4FF);
+  color: #333;
+  padding: 0 50px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.auth-container h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #47A0DF;
+  text-align: center;
+}
+
+.auth-container form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-container form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container label {
+  font-size: 1em;
+  margin-bottom: 5px;
+  color: #1E3C63;
+  font-weight: 600;
+}
+
+.auth-container input {
+  padding: 10px;
+  border: 1px solid #47A0DF;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.auth-container input:focus {
+  border-color: #007bff;
+}
+
+.auth-container button[type="submit"] {
+  background-color: #47A0DF;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container button[type="submit"]:hover {
+  background-color: #3a8cd2;
+}
+
+.auth-container .error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.auth-container hr {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 25px 0;
+}
+
+.auth-container button:not([type="submit"]) {
+  background-color: transparent;
+  color: #47A0DF;
+  border: 2px solid #47A0DF;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-container button:not([type="submit"]):hover {
+  background-color: #47A0DF;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .auth-container h1 {
+    font-size: 2em;
+  }
+
+  .auth-container form {
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .auth-container button[type="submit"] {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
+
+  .auth-container button:not([type="submit"]) {
+    font-size: 0.9em;
+    padding: 8px 12px;
+  }
+}

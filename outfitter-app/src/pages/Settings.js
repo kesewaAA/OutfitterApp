@@ -50,6 +50,11 @@ function Settings() {
     localStorage.setItem('plannedEvents', JSON.stringify(newValue));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    navigate('/auth');
+  };
+
   return (
     <div className="App">
       <h1 className="settings-header">Settings</h1>
@@ -60,11 +65,8 @@ function Settings() {
           <div className="settings-box clickable">
             <span>Profile Information</span>
           </div>
-          <div className="settings-box clickable">
+          <div className="settings-box clickable" onClick={handleLogout}>
             <span>Log Out</span>
-          </div>
-          <div className="settings-box clickable" onClick={() => navigate("/auth")}>
-            <span>Log In / Sign Up</span>
           </div>
         </div>
       </div>

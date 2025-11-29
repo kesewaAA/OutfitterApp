@@ -1,6 +1,8 @@
 // src/pages/Auth.js
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser, signupUser } from "../utils/auth"; // keep your existing functions
+import './Auth.css'; // Import the new CSS file
 
 function Auth() {
   const [mode, setMode] = useState("signin"); // "signin" or "signup"
@@ -8,24 +10,23 @@ function Auth() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState(""); // only for signup
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
 
     try {
-      let data;
       if (mode === "signup") {
-        data = await signupUser(name, email, password); // your existing signupUser function
+        await signupUser(name, email, password);
       } else {
-        data = await loginUser(email, password); // your existing loginUser function
+        await loginUser(email, password);
       }
 
-      // store tokens in localStorage (replace this if you want AsyncStorage for React Native)
-      localStorage.setItem("access", data.access);
-      localStorage.setItem("refresh", data.refresh);
+      // Simulate a successful login by setting a flag and navigating
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/");
 
-      alert(mode === "signup" ? "Signed up!" : "Signed in!");
     } catch (err) {
       setError(err.message || "Something went wrong");
     }
