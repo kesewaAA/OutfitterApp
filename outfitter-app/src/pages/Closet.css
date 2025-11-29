@@ -40,10 +40,11 @@
 
 .closet-scrollable-content {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 0 20px;
   position: relative;
   z-index: 10;
+  padding-bottom: 90px;
 }
 
 .divider {
@@ -117,11 +118,15 @@
   padding-left: 20px;
 }
 
+.recently-worn-tag-style {
+  background-color: #FF8E8E !important; /* Pink color for recently worn */
+}
+
 .closet-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  padding-bottom: 80px;
+  /* padding-bottom: 80px; is removed */
 }
 
 .closet-item {
@@ -228,6 +233,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    margin: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -263,52 +269,122 @@
     cursor: pointer;
 }
 
-/* Camera Container Styles */
-.camera-container {
+/* Classification View Styles */
+.classification-container {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #000;
-  z-index: 1000;
+  background: linear-gradient(to bottom, white, #C4F4FF);
+  z-index: 100;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding: 20px;
+  padding-top: 50px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
-.camera-video {
+.classification-container h2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #47A0DF;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.preview-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 300px;
+  height: auto;
+  border-radius: 15px;
+  border: 3px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-.camera-controls {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  right: 0;
+.category-selection {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 0 20px;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
 }
 
-.camera-cancel-button,
-.camera-capture-button {
-  background-color: #47A0DF;
-  color: white;
-  border: none;
-  padding: 15px 30px;
+.category-selection label {
+  font-size: 1.1em;
+  color: #1E3C63;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.category-dropdown {
+  padding: 12px;
+  border: 2px solid #47A0DF;
   border-radius: 25px;
-  font-size: 1.2em;
+  font-size: 1em;
+  background-color: white;
+  color: #1E3C63;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2347A0DF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: .65em auto;
+  padding-right: 40px;
+}
+
+.classification-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.classification-cancel-button,
+.classification-retake-button,
+.classification-upload-button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.camera-cancel-button {
-  background-color: #FF8E8E;
+.classification-upload-button {
+  background-color: #47A0DF;
+  color: white;
+}
+
+.classification-upload-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.classification-cancel-button,
+.classification-retake-button {
+  background-color: transparent;
+  color: #47A0DF;
+  border: 2px solid #47A0DF;
+}
+
+.classification-cancel-button:hover,
+.classification-retake-button:hover {
+  background-color: #47A0DF; /* Blue fill */
+  color: white; /* White text */
+}
+
+.classification-cancel-button:hover,
+.classification-retake-button:hover {
+  background-color: #47A0DF; /* Blue fill */
+  color: white; /* White text */
 }
 
 /* Keyframes for animations */
@@ -340,5 +416,36 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .closet-header {
+    font-size: 1.8em;
+    margin-top: 20px;
+  }
+
+  .closet-scrollable-content {
+    padding: 0 15px;
+  }
+
+  .closet-camera-button, .confirm-button {
+    width: 80%;
+    font-size: 1.2em;
+    padding: 15px 20px;
+  }
+
+  .camera-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+  }
+
+  .popup-content {
+    width: 90%;
+  }
+
+  .saved-star {
+    max-width: 25px;
   }
 }

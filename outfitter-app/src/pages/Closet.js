@@ -80,16 +80,22 @@ function Closet() {
 
   const allTags = Array.from(new Set(clothingData.flatMap(item => item.tags)));
   const recentlyWornTag = "recently worn";
-  const otherTags = allTags.filter(tag => tag !== recentlyWornTag && tag !== 'saved');
+  let filterableTags = allTags.filter(tag => tag !== 'saved');
+
+  // Ensure 'recently worn' is at the front if it's present in the tags
+  if (filterableTags.includes(recentlyWornTag)) {
+      filterableTags = filterableTags.filter(tag => tag !== recentlyWornTag);
+      filterableTags.unshift(recentlyWornTag); // Add to the beginning
+  }
 
   const handleTagClick = (tag) => {
-    if (tag === recentlyWornTag) return;
     setActiveTags(prev =>
       prev.includes(tag)
         ? prev.filter(t => t !== tag)
         : [...prev, tag]
     );
   };
+
 
   const handleItemClick = (e, item) => {
     if (e.target.classList.contains('saved-star')) {
@@ -147,8 +153,7 @@ function Closet() {
     : clothingData;
 
   const displayedTags = [
-    ...activeTags,
-    ...otherTags.filter(tag => !activeTags.includes(tag))
+    ...activeTags
   ];
 
   // Open camera
@@ -457,16 +462,10 @@ function Closet() {
 
             {/* Tags */}
             <div className="tags-container">
-              <div
-                className="tag"
-                style={{ backgroundColor: '#FF8E8E', cursor: 'default' }}
-              >
-                {recentlyWornTag}
-              </div>
-              {displayedTags.map((tag, index) => (
+              {filterableTags.map((tag, index) => (
                 <div
                   key={tag}
-                  className={`tag ${activeTags.includes(tag) ? 'active-tag' : ''}`}
+                  className={`tag ${activeTags.includes(tag) ? 'active-tag' : ''} ${tag === recentlyWornTag ? 'recently-worn-tag-style' : ''}`}
                   onClick={() => handleTagClick(tag)}
                   style={{
                     backgroundColor: activeTags.includes(tag)
