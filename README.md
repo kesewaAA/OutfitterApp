@@ -49,3 +49,16 @@ This is a simple app that suggests clothing outfits based on user input.
     - Components folder: Contains reusable components like the navigation bar
     - Pages folder: Contains all pages of the app with their respective CSS files
 - Backend is located in the `outfitter-app/backend` folder. **Make sure to install all requirements in requirements.txt before running the backend**
+
+
+## Acknowledgments
+
+Portions of this code were created with the assistance of Claude, an AI assistant by Anthropic.
+The AI assisted with:
+- Code architecture and implementation
+- Bug fixes and optimization
+- UI/UX improvements
+
+Specifically with the following components:
+- Daily Outfit Suggestions algorithm
+- Clothing Image Upload
